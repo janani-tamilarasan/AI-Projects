@@ -29,3 +29,17 @@ class ChatService:
         except Exception as e:
             db.rollback()
             raise e
+
+    @staticmethod
+    def get_chat_history(db, conversation_id):
+
+        messages = (
+            db.query(Message)
+            .filter(
+                Message.conversation_id == conversation_id
+            )
+            .order_by(Message.id)
+            .all()
+        )
+
+        return messages

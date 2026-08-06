@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from app.database.db import engine
 from app.services.chat_service import ChatService
-
+from app.responses.messages import MessageResponse
 
 class ChatRequest(BaseModel):
 
@@ -49,3 +49,9 @@ def chat(request: ChatRequest):
         'conversation_id': conversation.id,
          'response': ai_response
     }
+
+@router.get("/{conversation_id}/history", response_model=list[MessageResponse])
+def history(conversation_id: int):
+    messages = ChatService.get_chat_history(db,conversation_id)
+
+    return messages
