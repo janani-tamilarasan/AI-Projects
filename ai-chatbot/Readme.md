@@ -10,6 +10,11 @@ The application provides AI-generated responses, stores conversation history, an
 
 [AI Chatbot Demo Video](./ai-chatbot-demo.mp4)
 
+<img width="976" height="592" alt="image" src="https://github.com/user-attachments/assets/a57df9e7-ad70-4316-aaf5-f4870b2636b6" />
+
+<img width="714" height="597" alt="image" src="https://github.com/user-attachments/assets/19a7bf5f-bc49-4c8f-aca8-e5b7c759a5a2" />
+
+
 ---
 
 ## 🚀 Features
