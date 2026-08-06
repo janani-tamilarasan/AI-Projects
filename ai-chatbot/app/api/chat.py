@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.database.db import engine
 from app.services.chat_service import ChatService
 from app.responses.messages import MessageResponse
+from app.services.ai_service import AIService
 
 class ChatRequest(BaseModel):
 
@@ -27,10 +28,7 @@ def chat(request: ChatRequest):
 
      # 3. AI response (temporary)
 
-    ai_response = (
-        "This is AI response for: "
-        + request.message
-    )
+    ai_response = AIService.generate_response(request.message)
 
     # 4. Save AI message
 
