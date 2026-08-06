@@ -4,8 +4,9 @@ An AI-powered conversational chatbot built using **FastAPI**, **Google Gemini LL
 
 The application provides AI-generated responses, stores conversation history, and follows a clean backend architecture.
 
-<video src="./ai-chatbot-demo.mp4" controls>
-</video>
+# 🎥 Demo
+
+[AI Chatbot Demo Video](./ai-chatbot-demo.mp4)
 
 ---
 
