@@ -6,7 +6,7 @@ The application provides AI-generated responses, stores conversation history, an
 
 ![Demo](C:\Users\ADMIN\Downloads\ai-chatbot.mp4)
 
-
+![AI Chatbot Demo](/ai-chatbot (1).mp4)
 ---
 
 ## 🚀 Features
