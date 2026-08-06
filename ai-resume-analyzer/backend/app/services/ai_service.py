@@ -8,32 +8,36 @@ genai.configure(
 class AIService:
 
     @staticmethod
-    def analyze_resume(text):
+    def analyze_resume(text, job_description):
         model = genai.GenerativeModel(
             "gemini-3.5-flash"
         )
 
         prompt = f"""
-            You are an expert technical recruiter.
+        You are an expert technical recruiter.
 
-            Analyze this resume.
+        Analyze the resume against the job description.
 
-            Resume:
+        Resume:
+        {text}
 
-            {text}
+        Job Description:
+        {job_description}
 
+        Respond ONLY with valid JSON.
+        Do not include markdown.
+        Do not wrap the JSON in ```.
 
-            Return:
+        JSON format:
 
-            1. Overall score out of 100
-            2. Technical skills
-            3. Experience summary
-            4. Strengths
-            5. Missing skills
-            6. Improvement suggestions
-            7. Interview questions
-
-            Return response in JSON format.
+        {{
+        "match_score": 0,
+        "matched_skills": [],
+        "missing_skills": [],
+        "strengths": [],
+        "suggestions": [],
+        "interview_questions": []
+        }}
         """
         response = model.generate_content(prompt)
         return response.text
