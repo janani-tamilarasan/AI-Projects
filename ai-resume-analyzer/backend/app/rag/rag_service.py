@@ -14,7 +14,7 @@ class RAGService:
 
 
         self.llm = ChatGoogleGenerativeAI(
-            model="gemini-3.5-flash",
+            model="gemini-2.0-flash-lite-001",
             google_api_key=GEMINI_API_KEY,
             temperature=0.2
         )

@@ -10,7 +10,8 @@ from app.rag.chunking.chunk_service import ChunkService
 from app.rag.vector_db.chroma_service import ChromaService
 from app.rag.retriever.retriever_service import RetrieverService
 from app.rag.rag_service import RAGService
-
+import ast
+import json
 
 router = APIRouter(
     prefix= '/resume',
@@ -29,6 +30,7 @@ async def upload_resume(
 
     text = PdfService.extract_file(file.file)
 
+
     resume = ResumeService.save_resume(db, file.filename, text)
 
     ### Chunking
@@ -42,7 +44,7 @@ async def upload_resume(
     )
 
     ### Save Job Description
-    job_service = JobService.save_job_description(db, job_description)
+    JobService.save_job_description(db, job_description)
 
     ## Analyze
     rag_service = RAGService()
@@ -51,6 +53,33 @@ async def upload_resume(
     response = rag_service.analyze_resume(
         job_description
     )
+
+    # Convert string list -> Python list
+    if isinstance(response, str):
+
+        response = ast.literal_eval(response)
+
+
+    if isinstance(response, list):
+
+        response = response[0]["text"]
+
+
+    response = response.replace(
+        "```json",
+        ""
+    )
+
+    response = response.replace(
+        "```",
+        ""
+    )
+
+    response = response.strip()
+
+
+    response = json.loads(response)
+        
     
     ##  save Analysis
     AnalysisService.save_analysis(db, resume.id, response)
