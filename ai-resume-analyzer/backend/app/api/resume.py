@@ -7,6 +7,12 @@ from app.database.db import engine
 from app.services.resume_service import ResumeService
 from app.services.analysis_service import AnalysisService
 from app.services.job_service import JobService
+from app.rag.chunking.chunk_service import ChunkService
+from app.rag.embeddings.embedding_service import EmbeddingService
+from app.rag.vector_db.chroma_service import ChromaService
+from app.rag.retriever.retriever_service import RetrieverService
+from app.rag.rag_service import RAGService
+
 
 router = APIRouter(
     prefix= '/resume',
@@ -20,16 +26,47 @@ async def upload_resume(
     file: UploadFile = File(...),
     job_description: str = Form(...)
 ):
+    ## 1. Load Document
     validate_resume(file)
 
     text = PdfService.extract_file(file.file)
 
     resume = ResumeService.save_resume(db, file.filename, text)
 
-    job = JobService.save_job_description(db, job_description)
+    ### Chunking
+    chunks = ChunkService.create_chunks(text)
 
-    response = AIService.analyze_resume(text, job)
+    ### Store to vector database
+    chroma_service = ChromaService()
+    chroma_service.store_chunks(
+        chunks,
+        resume.id
+    )
 
+    ### Save Job Description
+    job_service = JobService.save_job_description(db, job_description)
+
+    ###  Gemini Analysis
+    retriever = RetrieverService()
+    documents = retriever.retrieve(
+        job_description
+    )
+    context = "\n\n".join(
+        [
+            doc.page_content
+            for doc in documents
+        ]
+    )
+
+    ## Analyze
+    rag_service = RAGService()
+
+
+    response = rag_service.analyze_resume(
+        job_description
+    )
+    
+    ##  save Analysis
     AnalysisService.save_analysis(db, resume.id, response)
 
     return {

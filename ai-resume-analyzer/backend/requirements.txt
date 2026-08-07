@@ -1,6 +1,22 @@
-python-dotenv
+# Existing
 fastapi
 uvicorn
-google-generativeai
+sqlalchemy
+psycopg2-binary
+python-dotenv
+pydantic
 pypdf
-python-multipart
+
+# Gemini
+google-generativeai
+
+# LangChain RAG
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+langchain-google-genai
+
+# Vector Database
+chromadb
+langchain-chroma
