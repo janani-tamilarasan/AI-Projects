@@ -1,14 +1,12 @@
 from fastapi import APIRouter, UploadFile, File, Form
 from app.services.pdf_service import PdfService
 from app.utils.validator import validate_resume
-from app.services.ai_service import AIService
 from sqlalchemy.orm import Session
 from app.database.db import engine
 from app.services.resume_service import ResumeService
 from app.services.analysis_service import AnalysisService
 from app.services.job_service import JobService
 from app.rag.chunking.chunk_service import ChunkService
-from app.rag.embeddings.embedding_service import EmbeddingService
 from app.rag.vector_db.chroma_service import ChromaService
 from app.rag.retriever.retriever_service import RetrieverService
 from app.rag.rag_service import RAGService
@@ -45,18 +43,6 @@ async def upload_resume(
 
     ### Save Job Description
     job_service = JobService.save_job_description(db, job_description)
-
-    ###  Gemini Analysis
-    retriever = RetrieverService()
-    documents = retriever.retrieve(
-        job_description
-    )
-    context = "\n\n".join(
-        [
-            doc.page_content
-            for doc in documents
-        ]
-    )
 
     ## Analyze
     rag_service = RAGService()

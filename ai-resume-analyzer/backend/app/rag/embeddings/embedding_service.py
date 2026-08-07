@@ -9,10 +9,10 @@ class EmbeddingService:
     """
 
     def __init__(self):
-        self.model = embeddings = GoogleGenerativeAIEmbeddings(
-                model="gemini-embedding-2-preview",
-                api_key = GEMINI_API_KEY
-            )
+        self.model = GoogleGenerativeAIEmbeddings(
+            model="gemini-embedding-001",
+            google_api_key=GEMINI_API_KEY
+        )
     
     def create_embeddings(self, texts: List[str]) ->  List[List[float]]:
         embeddings = self.model.embed_documents(texts)
