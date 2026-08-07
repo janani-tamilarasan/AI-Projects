@@ -1,5 +1,4 @@
-# 🤖 AI Resume Analyzer & Job Matching System
-
+# 🤖 AI Resume Analyzer 
 An AI-powered Resume Analysis and Job Matching application built using **FastAPI, React, PostgreSQL, LangChain, ChromaDB, and Google Gemini LLM**.
 
 This application analyzes candidate resumes against job descriptions using **Retrieval Augmented Generation (RAG)** and provides AI-powered insights including:
