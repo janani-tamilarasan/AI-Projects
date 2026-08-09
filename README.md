@@ -4,5 +4,5 @@
 
 2. [AI Resume Analyzer ](./ai-resume-analyzer/Readme.md)
 
-3. 
+3. [AI Enterprise Knowledge Assistant ](./ai-enterprise-knowledge-assistant/README.md)
 
