@@ -8,7 +8,8 @@ The application uses **RAG (Retrieval-Augmented Generation)** to find relevant i
 
 # 🎥 Working Demo
 
-<video src="./demo/AI-Assistant.mp4" controls width="800"></video>
+https://github.com/user-attachments/assets/37a81d9c-8212-4c21-aba3-881ecc0f089a
+
 
 # Set up
 git clone https://github.com/janani-tamilarasan/AI-Projects.git
