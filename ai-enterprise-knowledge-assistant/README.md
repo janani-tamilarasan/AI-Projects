@@ -6,10 +6,9 @@ The application uses **RAG (Retrieval-Augmented Generation)** to find relevant i
 
 ---
 
-Working demo
-## 🎥 Demo
+# 🎥 Working Demo
 
-<video src="ai-enterprise-knowledge-assistant/Screen-Recording%20(1).mp4" controls width="700"></video>
+<video src="./demo/AI-Assistant.mp4" controls width="800"></video>
 
 # Set up
 git clone https://github.com/janani-tamilarasan/AI-Projects.git
