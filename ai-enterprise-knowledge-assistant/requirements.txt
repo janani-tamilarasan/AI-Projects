@@ -24,6 +24,7 @@ sentence-transformers
 # Vector Database
 qdrant-client
 langchain-qdrant
+langchain-groq
 
 
 # Redis

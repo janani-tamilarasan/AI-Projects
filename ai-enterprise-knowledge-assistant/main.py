@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from app.api.documents import router
+from dotenv import load_dotenv
 
+load_dotenv()
 app = FastAPI(
     title="AI Enterprise Knowledge Assistant",
     description="Enterprise RAG Application using LangChain, Llama and Qdrant",
